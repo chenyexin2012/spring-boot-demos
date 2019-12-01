@@ -14,13 +14,15 @@ public class Producer {
     private static AtomicInteger count = new AtomicInteger(0);
 
     @Autowired
-    private JmsMessagingTemplate jmsTemplate;
+    private JmsMessagingTemplate jmsMessagingTemplate;
 
     public void sendMessage() {
-        jmsTemplate.convertAndSend(TOPIC, String.format("Test Spring Boot Active Mq{%d}", count.getAndIncrement()));
+        jmsMessagingTemplate.convertAndSend(TOPIC, String.format("Test Spring Boot Active Mq{%d}",
+                count.getAndIncrement()));
     }
 
     public void sendMessage(String destinationName) {
-        jmsTemplate.convertAndSend(destinationName, String.format("Test Spring Boot Active Mq{%d}", count.getAndIncrement()));
+        jmsMessagingTemplate.convertAndSend(destinationName, String.format("Test Spring Boot Active Mq{%d}",
+                count.getAndIncrement()));
     }
 }
