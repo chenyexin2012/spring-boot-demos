@@ -66,6 +66,6 @@ public class ActivemqSpringBootApplicationTest {
     @After
     public void after() throws InterruptedException {
         // 休眠30s，让消息被消费完
-        TimeUnit.SECONDS.sleep(30);
+        TimeUnit.SECONDS.sleep(300);
     }
 }

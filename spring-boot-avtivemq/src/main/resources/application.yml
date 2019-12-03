@@ -16,4 +16,3 @@ spring:
       max-connections: 10
       # 空闲连接过期时间
       idle-timeout: 30s
-
