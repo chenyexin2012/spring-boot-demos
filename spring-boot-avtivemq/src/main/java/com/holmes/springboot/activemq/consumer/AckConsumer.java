@@ -27,16 +27,18 @@ public class AckConsumer {
                     message.getText(), count.getAndIncrement());
 
             // 模拟异常
-            int i = 1 / 0;
+//            int i = 1 / 0;
 
             // 手动确认
             message.acknowledge();
+            // 若开启事务可以使用session.commit()方法
+//            session.commit();
         } catch (Exception e) {
             try {
                 // 不使用recover则等到重启才能再次消费
                 session.recover();
                 //e.printStackTrace();
-                log.error("consumerA exception");
+                log.error("consumerA exception", e);
             } catch (JMSException e1) {
                 e1.printStackTrace();
             }
