@@ -1,6 +1,6 @@
-create database sharding_sphere_demo_0;
-create database sharding_sphere_demo_1;
-create database sharding_sphere_demo_2;
+create database ds_0;
+create database ds_1;
+create database ds_2;
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (

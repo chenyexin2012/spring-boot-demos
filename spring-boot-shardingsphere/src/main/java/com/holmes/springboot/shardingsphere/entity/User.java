@@ -5,17 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     private Long id;
 
-    private String name;
+    private String userName;
 
-    private Integer age;
+    private String userPassword;
 
-    private String gender;
+    private String userEmail;
 
-    private String city;
+    private String address;
 }

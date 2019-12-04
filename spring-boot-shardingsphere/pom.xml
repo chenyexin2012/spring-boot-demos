@@ -18,22 +18,24 @@
             <version>${mybatis.spring.boot.version}</version>
         </dependency>
 
+        <!-- mysql-connector-java版本选择要慎重，版本过高可能出现不兼容的问题 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${alibaba.druid.version}</version>
+            <version>5.1.46</version>
         </dependency>
 
 <!--        <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <artifactId>druid-spring-boot-starter</artifactId>
             <version>${alibaba.druid.version}</version>
         </dependency>-->
+        <!-- 使用druid-spring-boot-starter可能会出现找不到数据源的问题 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${alibaba.druid.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>

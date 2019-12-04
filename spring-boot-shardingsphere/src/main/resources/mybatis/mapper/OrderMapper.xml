@@ -13,7 +13,7 @@
     <select id="selectList" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_order
+        from order
     </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select

@@ -29,13 +29,13 @@ public class ShardingSphereSpringBootApplicationTest {
 
     @Test
     public void testInsertUser() {
-        Random random = new Random();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10000; i++) {
             User user = new User();
-            user.setName(DataGeneratorUtil.generateName());
-            user.setAge(random.nextInt(30) + 10);
-            user.setGender(genders[random.nextInt(2)]);
-            user.setCity(DataGeneratorUtil.generateAddress());
+            user.setId(new Long(i));
+            user.setUserName(DataGeneratorUtil.generateName());
+            user.setUserEmail(DataGeneratorUtil.generateEmailAddress());
+            user.setUserPassword("123456");
+            user.setAddress(DataGeneratorUtil.generateAddress());
             if(userService.insert(user) == 1) {
                 log.info(user.toString() + "添加成功！");
             } else {

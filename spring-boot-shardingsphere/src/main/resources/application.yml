@@ -6,76 +6,79 @@ spring:
   shardingsphere:
     datasource:
       # 数据源名称，不能留有空格
-      name: master0,master1,master2,slave0,slave1,slave2
+      names: master0,slave0,master1,slave1,master2,slave2
       master0:
-        driver-class-name: com.mysql.cj.jdbc.Driver
+        driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_0?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3306/ds_0?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       slave0:
-        driver-class-name: com.mysql.cj.jdbc.Driver
+        driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3307/sharding_sphere_demo_0?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3307/ds_0?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       master1:
-        driver-class-name: com.mysql.cj.jdbc.Driver
+        driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_1?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3306/ds_1?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       slave1:
-        driver-class-name: com.mysql.cj.jdbc.Driver
+        driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3307/sharding_sphere_demo_1?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3307/ds_1?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       master2:
-        driver-class-name: com.mysql.cj.jdbc.Driver
+        driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_2?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3306/ds_2?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       slave2:
-        driver-class-name: com.mysql.cj.jdbc.Driver
+        driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3307/sharding_sphere_demo_2?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3307/ds_2?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
-    masterslave:
-      name: ms
-      master-data-source-names: master0,master1,master2
-      slave-data-source-names: slave0,slave1,slave2
+#    masterslave:
+#      name: ms
+#      master-data-source-name: master0
+#      slave-data-source-names: slave0
     props:
       sql:
         show: true
     sharding:
+      # 分库配置
       default-database-strategy:
         inline:
           sharding-column: id
-          algorithm-expression: sharding_sphere_demo_$->{id % 3}
+          algorithm-expression: master$->{id % 3}
+      # 分表配置
       tables:
         user:
-          actual-data-nodes: sharding_sphere_demo_$->{0..2}.user_$->{0..3}
+          actual-data-nodes: master$->{0..2}.user_$->{0..3}
           table-strategy:
             inline:
               sharding-column: id
               algorithm-expression: user_$->{id % 4}
-        order:
-          actual-data-nodes: sharding_sphere_demo_$->{0..2}.order_$->{0..3}
-          table-strategy:
-            inline:
-              sharding-column: id
-              algorithm-expression: order_$->{user_id % 4}
+#        order:
+#          actual-data-nodes: master$->{0..2}.order_$->{0..3}
+#          table-strategy:
+#            inline:
+#              sharding-column: id
+#              algorithm-expression: order_$->{user_id % 4}
+      # 读写分离配置
       master-slave-rules:
-        ds0:
+        master0:
           master-data-source-name: master0
           slave-data-source-names: slave0
-        ds1:
+        master1:
           master-data-source-name: master1
           slave-data-source-names: slave1
-        ds2:
+        master2:
           master-data-source-name: master2
           slave-data-source-names: slave2
 mybatis:
