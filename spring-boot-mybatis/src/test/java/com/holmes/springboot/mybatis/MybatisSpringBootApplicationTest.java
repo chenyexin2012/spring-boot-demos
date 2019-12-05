@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
@@ -20,7 +22,12 @@ public class MybatisSpringBootApplicationTest {
 
     @Test
     public void testSelectList() {
-        System.out.println(userService.selectList());
+
+        List<User> list = userService.selectList(6, 10);
+        log.info("size = {}", list.size());
+        for(User user : list) {
+            log.info(user.toString());
+        }
     }
 
     @Test

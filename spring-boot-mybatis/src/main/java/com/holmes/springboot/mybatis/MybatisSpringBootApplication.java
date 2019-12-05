@@ -14,6 +14,6 @@ public class MybatisSpringBootApplication {
 
         UserService userService = context.getBean(UserService.class);
 
-        System.out.println(userService.selectList());
+        System.out.println(userService.selectList(1, 10));
     }
 }

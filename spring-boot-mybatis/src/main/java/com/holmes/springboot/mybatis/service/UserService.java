@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
 
-    List<User> selectList();
+    List<User> selectList(Integer startPage, Integer pageSize);
 
     int deleteById(Long id);
 

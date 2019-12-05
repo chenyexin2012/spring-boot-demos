@@ -1,13 +1,15 @@
 package com.holmes.springboot.mybatis.utils;
 
+import com.github.pagehelper.PageHelper;
+
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class PageUtils {
 
-    public static<T> List<T> getPageList(Integer startPage, Integer pageSize) {
+    public static<T> List<T> getPageList(Integer startPage, Integer pageSize, Supplier<List<T>> supplier) {
 
-        return null;
+        PageHelper.startPage(startPage, pageSize);
+        return supplier.get();
     }
 }
