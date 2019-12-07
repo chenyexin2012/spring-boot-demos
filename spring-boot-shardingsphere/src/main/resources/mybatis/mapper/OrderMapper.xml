@@ -18,11 +18,9 @@
             tu.username AS userName,
             tor.id AS orderId,
             tor.order_sn AS orderSn
-        FROM
-            t_user tu
-            LEFT JOIN t_order tor ON tu.id = tor.user_id
-        WHERE
-            tor.user_id = #{userId}
+        FROM t_user tu
+        LEFT JOIN t_order tor ON tu.id = tor.user_id
+        WHERE tor.user_id = #{userId}
     </select>
     <select id="selectList" resultMap="BaseResultMap">
         select

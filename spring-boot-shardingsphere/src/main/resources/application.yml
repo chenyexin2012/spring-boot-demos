@@ -96,8 +96,8 @@ spring:
 #        ds2:
 #          master-data-source-name: master2
 #          slave-data-source-names: slave2
-      # 绑定表
-      binding-tables: t_user,t_order
+      # 绑定表，此处配置失效，应该与分片字段名有关
+#      binding-tables: t_user,t_order
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
