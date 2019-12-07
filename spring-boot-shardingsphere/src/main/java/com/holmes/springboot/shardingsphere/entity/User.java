@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,11 +14,17 @@ public class User {
 
     private Long id;
 
-    private String userName;
+    private String username;
 
-    private String userPassword;
+    private String password;
 
-    private String userEmail;
+    private Integer gender;
+
+    private String phone;
 
     private String address;
+
+    private Date createTime;
+
+    private Date modifyTime;
 }

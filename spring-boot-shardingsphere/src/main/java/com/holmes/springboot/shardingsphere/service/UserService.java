@@ -15,4 +15,6 @@ public interface UserService {
     User selectById(Long id);
 
     int update(User user);
+
+    int clearTable();
 }

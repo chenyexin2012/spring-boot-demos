@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService {
     public int update(User record) {
         return userMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public int clearTable() {
+        return userMapper.clearTable();
+    }
 }

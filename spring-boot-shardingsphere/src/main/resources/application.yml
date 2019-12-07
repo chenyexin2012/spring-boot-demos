@@ -10,37 +10,37 @@ spring:
       master0:
         driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3306/ds_0?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_0?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       slave0:
         driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3307/ds_0?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3307/sharding_sphere_demo_0?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       master1:
         driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3306/ds_1?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_1?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       slave1:
         driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3307/ds_1?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3307/sharding_sphere_demo_1?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       master2:
         driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3306/ds_2?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_2?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       slave2:
         driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3307/ds_2?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3307/sharding_sphere_demo_2?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
 #    masterslave:
@@ -48,39 +48,56 @@ spring:
 #      master-data-source-name: master0
 #      slave-data-source-names: slave0
     props:
+      # 打印sql日志
       sql:
         show: true
     sharding:
-      # 分库配置
-      default-database-strategy:
-        inline:
-          sharding-column: id
-          algorithm-expression: master$->{id % 3}
-      # 分表配置
+      # 默认数据库分片策略，同分库策略
+      # 若配置了master-slave-rules则下面数据源的名称必须与master-slave-rules的配置相同
+      # 否则和shardingsphere.datasource.names下的配置一致，建议多处配置使用同一别名
+#      default-database-strategy:
+#        inline:
+#          sharding-column: id
+#          algorithm-expression: master$->{id % 3}
+      # 分表配置，注意表名是否正确! 注意表名是否正确! 注意表名是否正确!
+      #         注意表名是否正确! 注意表名是否正确! 注意表名是否正确!
       tables:
-        user:
-          actual-data-nodes: master$->{0..2}.user_$->{0..3}
+        t_user:
+          actual-data-nodes: master$->{0..2}.t_user_$->{0..3}
+          # 分库策略
+          database-strategy:
+            inline:
+              sharding-column: id  #分片列名称
+              algorithm-expression: master$->{id % 3}  #分片算法行表达式
+          # 分表策略
           table-strategy:
             inline:
               sharding-column: id
-              algorithm-expression: user_$->{id % 4}
-#        order:
-#          actual-data-nodes: master$->{0..2}.order_$->{0..3}
-#          table-strategy:
-#            inline:
-#              sharding-column: id
-#              algorithm-expression: order_$->{user_id % 4}
-      # 读写分离配置
-      master-slave-rules:
-        master0:
-          master-data-source-name: master0
-          slave-data-source-names: slave0
-        master1:
-          master-data-source-name: master1
-          slave-data-source-names: slave1
-        master2:
-          master-data-source-name: master2
-          slave-data-source-names: slave2
+              algorithm-expression: t_user_$->{id % 4}
+        t_order:
+          actual-data-nodes: master$->{0..2}.t_order_$->{0..3}
+          database-strategy:
+            inline:
+              sharding-column: user_id
+              algorithm-expression: master$->{user_id % 3}
+          table-strategy:
+            inline:
+              sharding-column: user_id
+              algorithm-expression: t_order_$->{user_id % 4}
+      # 读写分离配置，使用了此配置，则default-database-strategy和tables的配置中数据源名要和下面的一致
+      # 如 ds0 和 ds$->{id % 3}，建议多处配置使用同一别名，此处为区分不使用相同别名
+#      master-slave-rules:
+#        ds0:
+#          master-data-source-name: master0
+#          slave-data-source-names: slave0
+#        ds1:
+#          master-data-source-name: master1
+#          slave-data-source-names: slave1
+#        ds2:
+#          master-data-source-name: master2
+#          slave-data-source-names: slave2
+      # 绑定表
+      binding-tables: t_user,t_order
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
