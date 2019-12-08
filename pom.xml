@@ -9,6 +9,7 @@
         <module>spring-boot-activemq</module>
         <module>spring-boot-shardingsphere</module>
         <module>spring-boot-websocket</module>
+        <module>spring-boot-shiro</module>
     </modules>
 
     <parent>
@@ -43,6 +44,7 @@
         <com.github.pagehelper.version>5.1.11</com.github.pagehelper.version>
         <alibaba.druid.version>1.1.21</alibaba.druid.version>
         <sharding-sphere.version>4.0.0-RC3</sharding-sphere.version>
+        <spring.shiro.version>1.4.2</spring.shiro.version>
     </properties>
 
     <dependencies>
