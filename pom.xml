@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>spring-boot-mybatis</module>
-        <module>spring-boot-avtivemq</module>
+        <module>spring-boot-activemq</module>
         <module>spring-boot-shardingsphere</module>
         <module>spring-boot-websocket</module>
     </modules>
