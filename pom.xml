@@ -8,6 +8,7 @@
         <module>spring-boot-mybatis</module>
         <module>spring-boot-avtivemq</module>
         <module>spring-boot-shardingsphere</module>
+        <module>spring-boot-websocket</module>
     </modules>
 
     <parent>
