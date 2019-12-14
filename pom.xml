@@ -10,6 +10,7 @@
         <module>spring-boot-shardingsphere</module>
         <module>spring-boot-websocket</module>
         <module>spring-boot-shiro</module>
+        <module>spring-boot-redis</module>
     </modules>
 
     <parent>
