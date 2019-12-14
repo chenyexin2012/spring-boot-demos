@@ -4,13 +4,16 @@ import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter;
+import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -38,32 +41,46 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
-        // 设置 SecurityManager
+        //Shiro的核心安全接口,这个属性是必须的
         bean.setSecurityManager(securityManager);
-        // 设置登录成功跳转Url
-        bean.setSuccessUrl("/main");
-        // 设置登录跳转Url
-        bean.setLoginUrl("/toLogin");
-        // 设置未授权提示Url
-        bean.setUnauthorizedUrl("/error/unAuth");
+
+        Map<String, Filter> filterMap = bean.getFilters();
+        filterMap.put("authc", new MyShiroUserFilter());
+        // 不起作用，原因不明，正在学习中
+        filterMap.put("perms", new MyPermissionsAuthorizationFilter());
 
         /**
+         * 使用LinkedHashMap，保证顺序
+         * 过滤链定义，从上向下顺序执行，注意/**的位置
          * anon：匿名用户可访问
          * authc：认证用户可访问
          * user：使用rememberMe可访问
          * perms：对应权限可访问
          * role：对应角色权限可访问
          **/
-        Map<String, String> filterMap = new LinkedHashMap<>();
-        filterMap.put("/user/login", "anon");
-        filterMap.put("/druid/**", "anon");
-        filterMap.put("/static/**", "anon");
-        filterMap.put("/**", "authc");
-        filterMap.put("/logout", "logout");
-
-        bean.setFilterChainDefinitionMap(filterMap);
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/user/login", "anon");
+        filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/**", "authc,perms");
+        bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }
+
+    /**
+     * 自定义Filter需要放在ShiroFilterFactoryBean的之后，以保证ShiroFilterFactoryBean先于Filter被加载
+     * 否则会出现 No SecurityManager accessible to the calling code 异常
+     *
+     * @return
+     */
+//    @Bean
+//    public MyShiroUserFilter shiroUserFilter() {
+//        return new MyShiroUserFilter();
+//    }
+//
+//    @Bean
+//    public MyPermissionsAuthorizationFilter permissionsAuthorizationFilter() {
+//        return new MyPermissionsAuthorizationFilter();
+//    }
 
     /**
      * Shiro生命周期处理器
