@@ -11,6 +11,7 @@
         <module>spring-boot-websocket</module>
         <module>spring-boot-shiro</module>
         <module>spring-boot-redis</module>
+        <module>spring-boot-mybatis-plus</module>
     </modules>
 
     <parent>
@@ -41,11 +42,14 @@
         <maven.shade.plugin.version>3.2.0</maven.shade.plugin.version>
 
         <mybatis.spring.boot.version>2.1.1</mybatis.spring.boot.version>
+        <mybatis.plus.spring.boot.version>3.3.0</mybatis.plus.spring.boot.version>
         <mysql.connector.version>5.1.46</mysql.connector.version>
         <com.github.pagehelper.version>5.1.11</com.github.pagehelper.version>
         <alibaba.druid.version>1.1.21</alibaba.druid.version>
         <sharding-sphere.version>4.0.0-RC3</sharding-sphere.version>
         <spring.shiro.version>1.4.2</spring.shiro.version>
+
+        <org.apache.velocity.version>2.1</org.apache.velocity.version>
     </properties>
 
     <dependencies>

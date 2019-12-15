@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.holmes.springboot.mybatisplus.mapper.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.holmes.springboot.mybatisplus.entity.Order">
+        <id column="ID" property="id" />
+        <result column="USER_ID" property="userId" />
+        <result column="NAME" property="name" />
+        <result column="COUNT" property="count" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, USER_ID, NAME, COUNT
+    </sql>
+
+</mapper>
