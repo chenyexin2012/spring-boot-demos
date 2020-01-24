@@ -13,6 +13,7 @@
         <module>spring-boot-redis</module>
         <module>spring-boot-mybatis-plus</module>
         <module>spring-boot-kafka</module>
+        <module>spring-boot-https</module>
     </modules>
 
     <parent>

@@ -1,0 +1,19 @@
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.jks
+    key-store-password: 123456
+    key-store-type: JKS
+  servlet:
+    context-path: /springboot
+
+http:
+  port: 9090
+
+#https:
+#  port: 8443
+#  context-path: /springboot
+#  ssl:
+#    key-store: keystore.jks
+#    key-store-password: 123456
+#    key-store-type: JKS
