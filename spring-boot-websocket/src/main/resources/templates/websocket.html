@@ -22,7 +22,7 @@ Test<br/>
     if('WebSocket' in window){
         var id = document.getElementById('id').value;
         //连接WebSocket节点
-        websocket = new WebSocket("ws://localhost:8080/websocket/" +　id);
+        websocket = new WebSocket("ws://localhost:8080/websocket/" + id);
     }
     else{
         alert('Not support websocket')
