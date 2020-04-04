@@ -1,6 +1,7 @@
 package com.holmes.springboot.dubbo.service.api;
 
 import com.alibaba.fastjson.JSONObject;
+import com.holmes.springboot.dubbo.exception.BusinessException;
 import com.holmes.springboot.dubbo.exception.NullInputException;
 
 /**
@@ -9,5 +10,5 @@ import com.holmes.springboot.dubbo.exception.NullInputException;
  */
 public interface IService {
 
-    JSONObject handle(JSONObject input) throws NullInputException;
+    JSONObject handle(JSONObject input) throws NullInputException, BusinessException;
 }
