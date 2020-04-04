@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: springboot-dubbo-provider-A
+server:
+  port: 9090
+dubbo:
+  application:
+    name: springboot-dubbo-provider-A
+  registry:
+    protocol: zookeeper
+    address: zookeeper://peer1:2181
+  protocol:
+    name: dubbo
+    port: 20880
+
+
+

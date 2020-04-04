@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: springboot-dubbo-comsumer-A
+server:
+  port: 8080
+dubbo:
+  application:
+    name: springboot-dubbo-comsumer-A
+  registry:
+    protocol: zookeeper
+    address: zookeeper://peer1:2181
+
+
+
