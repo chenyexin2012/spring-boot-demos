@@ -19,10 +19,10 @@ import java.util.List;
 @Slf4j
 public class UserController {
 
-    @Reference(group = "userService", version = "1.0.0", retries = 3)
+    @Reference(group = "userService", version = "1.0.0", retries = 3, mock = "true")
     private UserService userService;
 
-    @Reference(group = "helloService", version = "1.0.0")
+    @Reference(group = "helloService", version = "1.0.0", mock = "true")
     private IService iService;
 
     @GetMapping("/hello/{name}")

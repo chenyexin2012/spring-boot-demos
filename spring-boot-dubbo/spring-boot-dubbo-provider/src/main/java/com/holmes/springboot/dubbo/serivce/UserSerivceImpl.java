@@ -36,22 +36,19 @@ public class UserSerivceImpl implements UserService {
         try {
             log.info("获取用户列表");
             double random = Math.random();
-            if (random > 0.8) {
+            if (random > 0.9) {
                 // 模拟异常
                 log.info("程序发生了异常");
-                int i = 1 / 0;
+                throw new RuntimeException("程序发生了异常");
             }
-            if (random > 0.6) {
+            if (random > 0.8) {
                 // 模拟超时
                 TimeUnit.SECONDS.sleep(5);
                 log.info("程序运行超时");
             }
 
             List<User> userList = new ArrayList<>(USER_MAP.size());
-            Collection<User> collection = USER_MAP.values();
-            for (User user : collection) {
-                userList.add(user);
-            }
+            userList.addAll(USER_MAP.values());
             return userList;
         } catch (Exception e) {
             log.error("获取用户列表失败", e);
