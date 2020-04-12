@@ -1,20 +1,14 @@
 package com.holmes.springboot.redis;
 
 import com.holmes.springboot.redis.utils.RedisUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@Slf4j
-public class RedisSpringBootApplicationTest {
+
+public class RedisSpringBootApplicationTest extends RedisSpringBootApplication {
 
     @Resource
     private RedisTemplate<String, Object> redisTemplate;

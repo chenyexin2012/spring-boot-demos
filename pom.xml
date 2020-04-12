@@ -52,6 +52,7 @@
         <sharding-sphere.version>4.0.0-RC3</sharding-sphere.version>
         <spring.shiro.version>1.4.2</spring.shiro.version>
         <dubbo.version>2.7.5</dubbo.version>
+        <redisson.version>3.12.2</redisson.version>
 
         <org.apache.velocity.version>2.1</org.apache.velocity.version>
     </properties>
