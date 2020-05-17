@@ -1,4 +1,4 @@
-create database mybatis-demo;
+create database mybatis_demo;
 
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user`  (
