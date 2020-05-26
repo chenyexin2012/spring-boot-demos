@@ -122,7 +122,7 @@ public class ShardingSphereSpringBootApplicationTest {
         for (int i = 0; i < 1000; i++) {
             Order order = new Order();
             order.setId(System.currentTimeMillis());
-            order.setUserId(1L *random.nextInt() % 1000);
+            order.setUserId(Math.abs(random.nextLong() % 1000));
             order.setOrderSn(UUID.randomUUID().toString());
             order.setStatus(0);
             order.setCreateTime(new Date());

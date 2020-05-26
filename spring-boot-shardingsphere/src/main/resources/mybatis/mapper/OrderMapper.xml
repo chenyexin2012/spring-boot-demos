@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.holmes.springboot.shardingsphere.mapper.OrderMapper">
-    <resultMap id="BaseResultMap" type="com.holmes.springboot.shardingsphere.entity.Order">
-        <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="user_id" property="userId" jdbcType="BIGINT"/>
-        <result column="order_sn" property="orderSn" jdbcType="VARCHAR"/>
-        <result column="status" property="status" jdbcType="INTEGER"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
-    </resultMap>
-    <sql id="Base_Column_List">
+  <resultMap id="BaseResultMap" type="com.holmes.springboot.shardingsphere.entity.Order">
+    <id column="id" property="id" jdbcType="BIGINT"/>
+    <result column="user_id" property="userId" jdbcType="BIGINT"/>
+    <result column="order_sn" property="orderSn" jdbcType="VARCHAR"/>
+    <result column="status" property="status" jdbcType="INTEGER"/>
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+  <sql id="Base_Column_List">
         id, user_id, order_sn, status, create_time, modify_time
     </sql>
-    <select id="selectUserOrderList" resultType="map">
+  <select id="selectUserOrderList" resultType="map">
         SELECT
             tu.id AS userId,
             tu.username AS userName,
@@ -22,28 +22,28 @@
         LEFT JOIN t_order tor ON tu.id = tor.user_id
         WHERE tor.user_id = #{userId}
     </select>
-    <select id="selectList" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from t_order
-    </select>
-    <select id="selectByUserId" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from t_order
-        where user_id = #{userId}
-    </select>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select
-        <include refid="Base_Column_List"/>
-        from t_order
-        where id = #{id,jdbcType=BIGINT}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <select id="selectList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from t_order
+  </select>
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from t_order
+    where user_id = #{userId}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    <include refid="Base_Column_List"/>
+    from t_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from t_order
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" parameterType="com.holmes.springboot.shardingsphere.entity.Order">
+  <insert id="insert" parameterType="com.holmes.springboot.shardingsphere.entity.Order">
         insert into t_order (id, user_id, order_sn,
           status, create_time, modify_time
           )
@@ -51,71 +51,71 @@
           #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
           )
     </insert>
-    <insert id="insertSelective" parameterType="com.holmes.springboot.shardingsphere.entity.Order">
-        insert into t_order
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="userId != null">
-                user_id,
-            </if>
-            <if test="orderSn != null">
-                order_sn,
-            </if>
-            <if test="status != null">
-                status,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="modifyTime != null">
-                modify_time,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
-            <if test="userId != null">
-                #{userId,jdbcType=BIGINT},
-            </if>
-            <if test="orderSn != null">
-                #{orderSn,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                #{status,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="modifyTime != null">
-                #{modifyTime,jdbcType=TIMESTAMP},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.holmes.springboot.shardingsphere.entity.Order">
-        update t_order
-        <set>
-            <if test="userId != null">
-                user_id = #{userId,jdbcType=BIGINT},
-            </if>
-            <if test="orderSn != null">
-                order_sn = #{orderSn,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                status = #{status,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="modifyTime != null">
-                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-            </if>
-        </set>
-        where id = #{id,jdbcType=BIGINT}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.holmes.springboot.shardingsphere.entity.Order">
+  <insert id="insertSelective" parameterType="com.holmes.springboot.shardingsphere.entity.Order">
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderSn != null">
+        order_sn,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderSn != null">
+        #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holmes.springboot.shardingsphere.entity.Order">
+    update t_order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderSn != null">
+        order_sn = #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holmes.springboot.shardingsphere.entity.Order">
         update t_order
         set user_id = #{userId,jdbcType=BIGINT},
           order_sn = #{orderSn,jdbcType=VARCHAR},
@@ -124,7 +124,7 @@
           modify_time = #{modifyTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <delete id="clearTable">
+  <delete id="clearTable">
         delete from t_order
     </delete>
 </mapper>

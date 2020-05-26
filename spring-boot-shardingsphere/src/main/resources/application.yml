@@ -8,39 +8,39 @@ spring:
       # 数据源名称，不能留有空格
       names: master0,slave0,master1,slave1,master2,slave2
       master0:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_0?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_0?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       slave0:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3307/sharding_sphere_demo_0?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer2:3306/sharding_sphere_demo_0?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       master1:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_1?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_1?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       slave1:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3307/sharding_sphere_demo_1?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer2:3306/sharding_sphere_demo_1?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       master2:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_2?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer1:3306/sharding_sphere_demo_2?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
       slave2:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://peer1:3307/sharding_sphere_demo_2?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://peer2:3306/sharding_sphere_demo_2?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
         username: root
         password: 123456
 #    masterslave:
