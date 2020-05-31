@@ -74,6 +74,10 @@ spring:
             inline:
               sharding-column: id
               algorithm-expression: t_user_$->{id % 4}
+          # 配置主键生成方式，注意mapper文件中的insert字段不要加入主键，否则可能无法生成主键
+          key-generator:
+            type: SNOWFLAKE
+            column: id
         t_order:
           actual-data-nodes: master$->{0..2}.t_order_$->{0..3}
           database-strategy:
@@ -84,6 +88,9 @@ spring:
             inline:
               sharding-column: user_id
               algorithm-expression: t_order_$->{user_id % 4}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
       # 读写分离配置，使用了此配置，则default-database-strategy和tables的配置中数据源名要和下面的一致
       # 如 ds0 和 ds$->{id % 3}，建议多处配置使用同一别名，此处为区分不使用相同别名
 #      master-slave-rules:

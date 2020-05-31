@@ -30,10 +30,10 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
   <insert id="insert" parameterType="com.holmes.springboot.shardingsphere.entity.User">
-        insert into t_user (id, username, password,
+        insert into t_user (username, password,
           gender, phone, address,
           create_time, modify_time)
-        values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+        values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
           #{gender,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
           #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
     </insert>

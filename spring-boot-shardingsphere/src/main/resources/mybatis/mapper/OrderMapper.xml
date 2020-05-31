@@ -44,10 +44,10 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
   <insert id="insert" parameterType="com.holmes.springboot.shardingsphere.entity.Order">
-        insert into t_order (id, user_id, order_sn,
+        insert into t_order (user_id, order_sn,
           status, create_time, modify_time
           )
-        values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{orderSn,jdbcType=VARCHAR},
+        values (#{userId,jdbcType=BIGINT}, #{orderSn,jdbcType=VARCHAR},
           #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
           )
     </insert>

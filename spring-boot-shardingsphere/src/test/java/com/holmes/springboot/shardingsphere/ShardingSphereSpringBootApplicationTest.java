@@ -25,8 +25,6 @@ public class ShardingSphereSpringBootApplicationTest {
 
     private static ExecutorService executorService = Executors.newCachedThreadPool();
 
-    private static AtomicLong id = new AtomicLong(0);
-
     private static AtomicLong success = new AtomicLong(0);
 
     private static AtomicLong failed = new AtomicLong(0);
@@ -50,13 +48,26 @@ public class ShardingSphereSpringBootApplicationTest {
     }
 
     @Test
+    public void testInsertOne() {
+
+        User user = new User();
+        user.setUsername(DataGeneratorUtil.generateName());
+        user.setGender(0);
+        user.setPhone(DataGeneratorUtil.generatePhoneNumber());
+        user.setPassword("123456");
+        user.setAddress(DataGeneratorUtil.generateAddress());
+        user.setCreateTime(new Date());
+        user.setModifyTime(new Date());
+        userService.insert(user);
+    }
+
+    @Test
     public void testInsertUser() throws InterruptedException {
         long start = System.currentTimeMillis();
         for(int i = 0; i < 10; i++) {
             executorService.execute(() -> {
                 for (int j = 0; j < 100; j++) {
                     User user = new User();
-                    user.setId(id.getAndIncrement());
                     user.setUsername(DataGeneratorUtil.generateName());
                     user.setGender(0);
                     user.setPhone(DataGeneratorUtil.generatePhoneNumber());
@@ -80,7 +91,7 @@ public class ShardingSphereSpringBootApplicationTest {
         }
         long end = System.currentTimeMillis();
 
-        log.info("新增{}条，成功{}， 失败{}，耗时{}ms", id.get(), success.get(), failed.get(), end - start);
+        log.info("新增{}条，成功{}， 失败{}，耗时{}ms", 1000, success.get(), failed.get(), end - start);
     }
 
     @Test
@@ -121,7 +132,6 @@ public class ShardingSphereSpringBootApplicationTest {
         Random random = new Random();
         for (int i = 0; i < 1000; i++) {
             Order order = new Order();
-            order.setId(System.currentTimeMillis());
             order.setUserId(Math.abs(random.nextLong() % 1000));
             order.setOrderSn(UUID.randomUUID().toString());
             order.setStatus(0);
