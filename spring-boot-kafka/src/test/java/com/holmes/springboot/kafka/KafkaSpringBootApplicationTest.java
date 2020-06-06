@@ -21,9 +21,7 @@ public class KafkaSpringBootApplicationTest {
     public void testSendMessage() throws InterruptedException {
 
         for (int i = 0; i < 10; i++) {
-//            producer.sendDefaultMessage(KafkaConstant.DEFAULT_KAFKA_TOPIC, String.valueOf(System.nanoTime()));
-            producer.sendDefaultMessage(KafkaConstant.BATCH_KAFKA_TOPIC, "春花秋月何时了，往事知多少！");
-//            producer.sendDefaultMessage(KafkaConstant.ACK_KAFKA_TOPIC, "春花秋月何时了，往事知多少！");
+            producer.sendDefaultMessage("春花秋月何时了，往事知多少！");
         }
         TimeUnit.SECONDS.sleep(10);
     }

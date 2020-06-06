@@ -29,6 +29,7 @@ public class KafkaConfig {
     public KafkaTemplate<String, String> kafkaTemplate() {
 
         KafkaTemplate<String, String> kafkaTemplate = new KafkaTemplate<>(producerFactory());
+        kafkaTemplate.setDefaultTopic(KafkaConstant.DEFAULT_KAFKA_TOPIC);
         return kafkaTemplate;
     }
 
@@ -37,7 +38,7 @@ public class KafkaConfig {
         return new DefaultKafkaConsumerFactory<>(properties.buildConsumerProperties());
     }
 
-    @Bean
+    @Bean("kafkaListenerContainerFactory")
     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();

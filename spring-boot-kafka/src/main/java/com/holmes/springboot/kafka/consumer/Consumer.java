@@ -8,22 +8,42 @@ import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 @Slf4j
 public class Consumer {
 
-    @KafkaListener(topics = {KafkaConstant.DEFAULT_KAFKA_TOPIC}, containerFactory = "kafkaListenerContainerFactory")
-    public void handleMessage(ConsumerRecord consumerRecord) {
+    private static AtomicInteger count = new AtomicInteger(0);
 
-        log.info("handle message");
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        log.info("key = {}", consumerRecord.key());
-        log.info("topic = {}", consumerRecord.topic());
-        log.info("partition = {}", consumerRecord.partition());
-        log.info("timestamp = {}", consumerRecord.timestamp());
-        log.info("message: {}", consumerRecord.value());
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    @KafkaListener(topics = {KafkaConstant.TEST_KAFKA_TOPIC}, containerFactory = "kafkaListenerContainerFactory")
+    public void handleTestMessage(ConsumerRecord consumerRecord) {
+
+        log.info("Thread: {}, partition: {}, key: {}, message: {}, count: {}", Thread.currentThread().getId(), consumerRecord.partition(),
+                consumerRecord.key(), consumerRecord.value(), count.incrementAndGet());
+//        log.info("handle message");
+//        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+//        log.info("key = {}", consumerRecord.key());
+//        log.info("topic = {}", consumerRecord.topic());
+//        log.info("partition = {}", consumerRecord.partition());
+//        log.info("timestamp = {}", consumerRecord.timestamp());
+//        log.info("message: {}", consumerRecord.value());
+//        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    }
+
+    @KafkaListener(topics = {KafkaConstant.DEFAULT_KAFKA_TOPIC}, containerFactory = "kafkaListenerContainerFactory")
+    public void handleDefaultMessage(ConsumerRecord consumerRecord) {
+
+        log.info("partition: {}, key: {}, message: {}, count: {}", consumerRecord.partition(),
+                consumerRecord.key(), consumerRecord.value(), count.incrementAndGet());
+//        log.info("handle message");
+//        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+//        log.info("key = {}", consumerRecord.key());
+//        log.info("topic = {}", consumerRecord.topic());
+//        log.info("partition = {}", consumerRecord.partition());
+//        log.info("timestamp = {}", consumerRecord.timestamp());
+//        log.info("message: {}", consumerRecord.value());
+//        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @KafkaListener(topics = {KafkaConstant.BATCH_KAFKA_TOPIC}, containerFactory = "batchKafkaListenerContainerFactory")

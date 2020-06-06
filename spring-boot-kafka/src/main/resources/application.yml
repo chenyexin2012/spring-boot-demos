@@ -3,9 +3,9 @@ server:
 spring:
   kafka:
     # 指定代理地址，可以多个
-    bootstrap-servers: peer1:9092
+    bootstrap-servers: peer1:9092,peer2:9092,peer3:9092
     producer:
-      retries: 0
+      retries: 3
       # 每次批量发送消息的数量
       batch-size: 16384
       # produce积累数据一次发送，缓存大小达到buffer.memory就发送数据
@@ -17,7 +17,7 @@ spring:
       #acks = 1 这意味着leader会将记录写入其本地日志，但无需等待所有副本服务器的完全确认即可做出回应，在这种情况下，如果leader在确认记录后立即失败，但在将数据复制到所有的副本服务器之前，则记录将会丢失。
       #acks = all 这意味着leader将等待完整的同步副本集以确认记录，这保证了只要至少一个同步副本服务器仍然存活，记录就不会丢失，这是最强有力的保证，这相当于acks = -1的设置。
       #可以设置的值为：all, -1, 0, 1
-      #acks: 1
+      acks: all
     consumer:
       group-id: spring-boot-demo-kafka
       # 手动提交
