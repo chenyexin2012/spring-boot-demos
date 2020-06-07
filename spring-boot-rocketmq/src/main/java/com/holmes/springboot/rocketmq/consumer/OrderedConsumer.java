@@ -14,6 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 顺序消费
  *
  * 通过打印 queueId 和 threadId 可以看到每个 queue 都有一个单独的 consumer 进行消费
+ *
+ * 生产者方法见 Producer.orderMessage
  */
 @Component
 @Slf4j
