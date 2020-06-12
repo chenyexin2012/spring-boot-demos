@@ -17,6 +17,8 @@
         <module>spring-boot-dubbo</module>
         <module>spring-boot-cache</module>
         <module>spring-boot-rocketmq</module>
+        <module>spring-boot-rabbitmq</module>
+        <module>spring-boot-multidatasource</module>
     </modules>
 
     <parent>

@@ -1,5 +1,5 @@
 rocketmq:
-  name-server: peer1:9876
+  name-server: peer1:9876;peer2:9876;peer3:9876
   producer:
     group: my-group
     send-message-timeout: 60000

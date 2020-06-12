@@ -15,14 +15,14 @@ public class RocketmqSpringBootApplication {
         Producer producer = context.getBean(Producer.class);
         TransactionMessageProducer transactionMessageProducer = context.getBean(TransactionMessageProducer.class);
 
-        for (int i = 0; i < 1; i++) {
-            transactionMessageProducer.transactionMessage();
+        for (int i = 0; i < 1000000; i++) {
+//            transactionMessageProducer.transactionMessage();
 //            producer.filterSQLMessage();
 //            producer.filterTagMessage();
 //            producer.batchMessage();
 //            producer.scheduledMessage();
 //            producer.orderMessage();
-//            producer.syncMessage();
+            producer.syncMessage();
 //            producer.asyncMessage();
 //            producer.oneWayMessage();
         }
