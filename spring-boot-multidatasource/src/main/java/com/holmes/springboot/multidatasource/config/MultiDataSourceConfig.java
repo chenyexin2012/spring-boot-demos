@@ -21,6 +21,11 @@ import java.util.Map;
 @MapperScan(basePackages = "com.holmes.springboot.multidatasource.mapper")
 public class MultiDataSourceConfig {
 
+    /**
+     * 创建主数据源
+     *
+     * @return
+     */
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.master")
     public DataSource masterDataSource() {
@@ -28,6 +33,11 @@ public class MultiDataSourceConfig {
         return new DruidDataSource();
     }
 
+    /**
+     * 创建从数据源
+     *
+     * @return
+     */
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.slave")
     public DataSource slaveDataSource() {
