@@ -19,6 +19,7 @@
         <module>spring-boot-rocketmq</module>
         <module>spring-boot-rabbitmq</module>
         <module>spring-boot-multidatasource</module>
+        <module>spring-boot-atomikos</module>
     </modules>
 
     <parent>
