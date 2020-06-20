@@ -44,7 +44,7 @@ public class JavaDoubaneProcessor implements PageProcessor {
                 book.setImg(imgs.get(i));
                 book.setName(bookNames.get(i).trim());
                 if (points.size() == imgs.size()) {
-                    book.setPoint(points.get(i));
+                    book.setPoint(Float.parseFloat(getNumber(points.get(i))));
                 }
 
                 String countStr = commentCounts.get(i);

@@ -57,7 +57,7 @@ public class Book implements Serializable {
     /**
      * 豆瓣评分
      */
-    private String point;
+    private Float point;
 
     /**
      * 评论数量
