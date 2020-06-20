@@ -1,0 +1,4 @@
+spring:
+  elasticsearch:
+    rest:
+      uris: peer1:9200
