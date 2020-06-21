@@ -5,6 +5,8 @@ import com.holmes.springboot.ealsticsearch.repository.BookRepository;
 import com.holmes.springboot.ealsticsearch.spider.BookPipeline;
 import com.holmes.springboot.ealsticsearch.spider.JavaDoubaneProcessor;
 import org.elasticsearch.index.query.*;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
@@ -12,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -58,6 +61,11 @@ public class App {
 
         Optional<Book> optional = bookRepository.findById(1L);
         System.out.println(optional.get());
+    }
+
+    @Test
+    public void testSearch() {
+
     }
 
     @Test
@@ -171,6 +179,10 @@ public class App {
     @Test
     public void test6() {
 
+    }
+
+    @Test
+    public void test7() {
 
     }
 }
