@@ -1,0 +1,37 @@
+spring:
+  rabbitmq:
+    host: peer1
+    port: 5672
+    username: user
+    password: password
+    #确认消息已发送到交换机(Exchange)
+    publisher-confirm-type: correlated
+    #确认消息已发送到队列(Queue)
+    publisher-returns: true
+    listener:
+      simple:
+        # 是否启动时自动启动容器
+        auto-startup: true
+        # 消费者的最小数量
+        concurrency: 3
+        # 消费者的最大数量
+        max-concurrency: 5
+        # 在当个请求中处理的消息个数，如果有事务，必须大于事务数量
+        prefetch: 10
+        # 确认模式
+        acknowledge-mode: manual
+        # 投递失败时是否重新排队
+        default-requeue-rejected: true
+        retry:
+          # 是否开启监听重试
+          enabled: true
+          # 重新投递的时间间隔
+          initial-interval: 1000ms
+          # 尝试投递消息的最大数量
+          max-attempts: 3
+          # 上一次尝试时间间隔的乘数
+          multiplier: 1.0
+          # 重试是有状态还是无状态
+          stateless: true
+
+
