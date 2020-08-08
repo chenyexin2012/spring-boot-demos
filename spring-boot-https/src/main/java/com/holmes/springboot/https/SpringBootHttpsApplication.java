@@ -12,6 +12,7 @@ public class SpringBootHttpsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootHttpsApplication.class, args);
+
     }
 
     @Value("${http.port}")
