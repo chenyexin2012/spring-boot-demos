@@ -1,0 +1,28 @@
+server:
+  port: 80
+# 分布式文件系统FDFS配置
+fdfs:
+  soTimeout: 1500 #socket连接超时时长
+  connectTimeout: 600 #连接tracker服务器超时时长
+  nginxHost: 192.168.31.11   #nginx访问地址
+  nginxPort: 80              #nginx访问端口
+  thumbImage: #缩略图生成参数，可选
+      width: 150
+      height: 150
+  trackerList: #TrackerList参数,支持多个，如果有多个在下方加- x.x.x.x:port
+      - 192.168.31.11:22122
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB # 最大支持文件大小
+      max-request-size: 100MB # 最大支持请求大小
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://peer1:3306/fdfs?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
