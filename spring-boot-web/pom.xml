@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-boot-https</artifactId>
+    <artifactId>spring-boot-web</artifactId>
 
     <dependencies>
         <dependency>
@@ -22,12 +22,6 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -36,10 +30,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.holmes.springboot.https.SpringBootHttpsApplication</mainClass>
+                    <mainClass>com.holmes.springboot.web.SpringWebApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>

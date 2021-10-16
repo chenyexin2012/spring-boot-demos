@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: spring-boot-web
+server:
+  port: 8080
+  servlet:
+    context-path: /web
