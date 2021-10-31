@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-boot-mongo
+  data:
+    mongodb:
+      host: myhost
+      username: douban
+      password: douban123456!
+      database: douban
