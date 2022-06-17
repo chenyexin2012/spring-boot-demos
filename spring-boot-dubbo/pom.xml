@@ -26,7 +26,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
+            <version>1.2.83</version>
         </dependency>
         <!-- org.apache.dubbo使用curator作为zookeeper客户端，需要注意版本-->
         <dependency>
