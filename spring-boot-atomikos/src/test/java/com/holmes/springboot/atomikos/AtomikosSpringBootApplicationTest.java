@@ -4,7 +4,7 @@ import com.holmes.springboot.atomikos.entity.User;
 import com.holmes.springboot.atomikos.service.UserService;
 import com.holmes.springboot.atomikos.utils.DataGeneratorUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

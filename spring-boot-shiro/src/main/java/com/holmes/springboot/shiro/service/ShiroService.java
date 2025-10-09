@@ -4,7 +4,10 @@ import com.holmes.springboot.shiro.entity.Permission;
 import com.holmes.springboot.shiro.entity.User;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 @Service
 public class ShiroService {

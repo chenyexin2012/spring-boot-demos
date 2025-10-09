@@ -3,9 +3,9 @@ package com.holmes.springboot.shardingsphere.service.impl;
 import com.holmes.springboot.shardingsphere.entity.User;
 import com.holmes.springboot.shardingsphere.mapper.UserMapper;
 import com.holmes.springboot.shardingsphere.service.UserService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Service

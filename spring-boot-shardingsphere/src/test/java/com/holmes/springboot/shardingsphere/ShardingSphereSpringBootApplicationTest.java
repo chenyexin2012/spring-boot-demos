@@ -2,11 +2,11 @@ package com.holmes.springboot.shardingsphere;
 
 import com.holmes.springboot.shardingsphere.entity.Order;
 import com.holmes.springboot.shardingsphere.entity.User;
-import com.holmes.springboot.shardingsphere.utils.DataGeneratorUtil;
 import com.holmes.springboot.shardingsphere.service.OrderService;
 import com.holmes.springboot.shardingsphere.service.UserService;
+import com.holmes.springboot.shardingsphere.utils.DataGeneratorUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
